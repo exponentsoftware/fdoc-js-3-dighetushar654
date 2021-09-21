@@ -26,5 +26,21 @@ const student = {
     }
 }
 
-const newStudent = { ...student };
-console.log(newStudent);
+const copyObjUpdate = (type, skill) => {
+    //create new obj from student
+    const newStudent = { ...student };
+    // iterating thhroug loop 
+    for(let i in newStudent.skills) {
+        //if type match key so go in condition
+        if(i == type) {
+            // push the new skills
+            newStudent.skills[i].push(skill);
+        }
+    }
+    console.log(newStudent.skills);
+};
+
+copyObjUpdate("frontEnd", { skill: "Bootstrap", level: 8 });
+copyObjUpdate("backEnd", { skill: "Express", level: 9 });
+copyObjUpdate("dataBase", { skill: "SQL", level: 8 });
+copyObjUpdate("dataScience", "SQL");
