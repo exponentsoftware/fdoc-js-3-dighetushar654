@@ -1,7 +1,4 @@
 // 2.  Questions:a, b and c are based on the following two arrays:users and products
-
-const { set } = require("mongoose");
-
 const users = [
     {
       _id: "ab12ex",
@@ -132,3 +129,67 @@ const signIn = (userName, password) => {
 
 signIn("Martnha", "123222")
 
+const rateProduct = (_id,password,productname,rating) =>{
+  let User = users.find(User => User._id === _id&&User.password===password);
+  let Product = products.find(Product =>Product.name === productname);
+  if(User&&Product){
+    const rate=Product.ratings
+    rate.push({userId:_id, rate:rating})
+     console.log(rate)
+      console.log("added rating")  
+  }else{
+      console.log("user not found")
+  }
+}
+
+rateProduct('ab12ex','123123','TV',10)
+
+// Find the Average Rating Product
+// const input = {
+//   _id:"eedfcf"
+// }
+// let currentProduct = products.filter((product) => product._id === input._id);
+// if(!currentProduct.length) {
+//   return "Product Does Not Exist";
+// }
+// currentProduct = currentProduct[0];
+// let ratingCount = currentProduct.ratings.length;
+// if(!ratingCount) {
+//   return "No Ratings Available";
+// }
+// let totalRatings = 
+
+const avgRating = (productname) =>{
+  let ratingSum = 0;
+  let Product = products.find(Product =>Product.name === productname);
+  if(Product){
+   Product.ratings.forEach((item) => {
+    ratingSum = item.rate + ratingSum;
+  });
+  return console.log(ratingSum / Product.ratings.length);
+} else {
+  return console.log("Product not found");
+}
+};
+
+avgRating('mobile phone')
+
+const likeProduct =(userid,productname)=>{
+	let User =  users.find(User => User._id === userid);
+    let Product = products.find(Product => Product.name === productname)
+    if(Product){
+            if(Product.likes.includes(userid)){
+            
+                Product.likes.pop({userId:userid});
+                console.log('disliked')
+            }else{
+               
+		Product.likes.push({userId:userid});
+        console.log('like added')
+            }
+        }else{
+            console.log("product not found")
+        }
+	}
+	
+likeProduct('fg12cy','Laptop')

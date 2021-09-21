@@ -29,27 +29,27 @@ const student = {
 //    e. Iterate the keys of the student object
 
 //1(a)
-const objectArrays = Object.keys(newStudent);
+const objectArrays = Object.keys(student);
 const length = objectArrays.length;
 console.log("length", length);
 
 //1(b)
-const objectValuesArray = Object.values(newStudent);
+const objectValuesArray = Object.values(student);
 console.log(objectValuesArray.length);
 
 // //1(c)
-const skillkey = newStudent.skills;
+const skillkey = student.skills;
 console.log(Object.keys(skillkey).length);
 
 // //1(d)
 const checkGraphicDesignProp = (student, checkkey) => {
   check = Object.keys(student.skills).filter((item) => item == checkkey);
-  console.log(check)
+//   console.log(check)
   if (check.length == 0) {
     console.log(false);
   } else console.log(true);
 };
-checkGraphicDesignProp(student, "backEnd");
+checkGraphicDesignProp(student, "graphicDesign");
 
 // //1(e)
 const iterateItem = Object.keys(student).map((item) => console.log(item));
